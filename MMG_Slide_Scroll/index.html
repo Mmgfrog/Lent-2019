@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Savvy Hipster Article</title>
+</head>
+<body>
+
+  <div class="site-wrap">
+
+    <h1>Slide in on Scroll</h1>
+
+    <p>Hashtag vinyl lomo hot chicken kickstarter, jean shorts ugh la croix fashion axe banjo direct trade microdosing tumblr. Ennui jianbing man bun synth mixtape cardigan fam bushwick. </p>
+    <p>Biodiesel blue bottle authentic bushwick mustache celiac bitters squid etsy kale chips. Hammock offal jean shorts banjo whatever snackwave pickled tbh farm-to-table man bun pabst. Small batch wayfarers forage bespoke DIY ethical, four dollar toast deep v humblebrag slow-carb air plant. </p>
+    <p>Locavore franzen chambray irony, art party yr quinoa. Selvage blue bottle synth YOLO letterpress green juice dreamcatcher drinking vinegar woke offal.</p>
+    <p>Biodiesel blue bottle authentic bushwick mustache celiac bitters squid etsy kale chips. <em>Thank you hipsum.co.</em></p>
+    <p>Salvia fingerstache beard, af fashion axe keytar before they sold out occupy helvetica adaptogen lyft butcher austin next level ethical. </p>
+    <p>Tattooed shabby chic stumptown, vape shoreditch literally kinfolk asymmetrical fam truffaut tousled.</p>
+
+    <img src="http://unsplash.it/400/400" class="align-left slide-in">
+
+    <p>Direct trade poke pok pok, taiyaki chicharrones vegan kale chips blog flexitarian put a bird on it occupy. Forage selfies XOXO organic. Roof party asymmetrical brooklyn prism, locavore tousled fanny pack shabby chic man bun hexagon tofu tattooed. Keytar tilde plaid, lomo celiac selvage bespoke irony cliche vegan la croix banh mi. Mlkshk gochujang leggings, pickled blog listicle bicycle rights cliche squid meh sustainable whatever. Small batch wayfarers forage bespoke DIY ethical, four dollar toast deep v humblebrag slow-carb air plant. Locavore franzen chambray irony, art party yr quinoa. Selvage blue bottle synth YOLO letterpress green juice dreamcatcher drinking vinegar woke offal. Biodiesel blue bottle authentic bushwick mustache celiac bitters squid etsy kale chips.</p>
+
+    <img src="http://unsplash.it/400/401" class="align-right slide-in">
+
+    <p>Four loko kale chips drinking vinegar keffiyeh taxidermy cronut. Next level jianbing cred salvia ennui succulents umami kinfolk fashion axe heirloom gastropub poke. Kogi freegan gochujang la croix. Ethical health goth hot chicken, bespoke blog crucifix plaid organic. Truffaut hell of four dollar toast unicorn, microdosing echo park shoreditch aesthetic church-key flexitarian kinfolk VHS before they sold out messenger bag disrupt. Keytar copper mug tumeric, fixie skateboard normcore umami four dollar toast microdosing vape you probably haven't heard of them cardigan hexagon. YOLO scenester affogato enamel pin.</p>
+
+    <img src="http://unsplash.it/200/500" class="align-left slide-in">
+
+    <p>Kale chips fam snackwave, forage bespoke meh schlitz cronut shoreditch. Man braid vice keffiyeh, tilde artisan iPhone mustache photo booth pork belly.  Fanny pack iceland green juice skateboard helvetica hella swag ugh sustainable irony.  <img src="http://unsplash.it/200/200" class="align-right slide-in"> Shoreditch mumblecore twee chicharrones thundercats. Direct trade thundercats kombucha authentic narwhal franzen. Selfies artisan XOXO, kogi plaid skateboard chicharrones pug portland. Tattooed narwhal aesthetic, ennui lo-fi blue bottle lyft fam irony green juice organic kale chips tbh.</p>
+
+
+    <p>Etsy helvetica irony palo santo, portland vexillologist vaporware adaptogen. PBR&B typewriter banh mi readymade, pok pok DIY blog flannel chambray heirloom pitchfork deep v. Banjo lumbersexual ethical DIY leggings, wayfarers craft beer iPhone 90's distillery. Polaroid lyft scenester, roof party flexitarian street art locavore pabst cardigan plaid fam semiotics 90's neutra. Meggings kogi polaroid williamsburg migas.</p>
+
+    <img src="http://unsplash.it/400/400" class="align-right slide-in">
+
+    <p>Hashtag vinyl lomo hot chicken kickstarter, jean shorts ugh la croix fashion axe banjo direct trade microdosing tumblr. Ennui jianbing man bun synth mixtape cardigan fam bushwick. Hammock offal jean shorts banjo whatever snackwave pickled tbh farm-to-table man bun pabst. Small batch wayfarers forage bespoke DIY ethical, four dollar toast deep v humblebrag slow-carb air plant. Locavore franzen chambray irony, art party yr quinoa. Selvage blue bottle synth YOLO letterpress green juice dreamcatcher drinking vinegar woke offal. Biodiesel blue bottle authentic bushwick mustache celiac bitters squid etsy kale chips.</p>
+    <p>Salvia fingerstache beard, af fashion axe keytar before they sold out occupy helvetica adaptogen lyft butcher austin next level ethical. Tattooed shabby chic stumptown, vape shoreditch literally kinfolk asymmetrical fam truffaut tousled. Roof party asymmetrical brooklyn prism, locavore tousled fanny pack shabby chic man bun hexagon tofu tattooed. Keytar tilde plaid, lomo celiac selvage bespoke irony cliche vegan la croix banh mi. Mlkshk gochujang leggings, pickled blog listicle bicycle rights cliche squid meh sustainable whatever.</p>
+
+
+
+
+  </div>
+
+  <script>
+    function debounce(func, wait = 20, immediate = true) {
+      var timeout;
+      return function() {
+        var context = this, args = arguments;
+        var later = function() {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    }
+
+  const sliderImages = document.querySelectorAll('.slide-in');
+
+  function checkSlide(e) {
+    sliderImages.forEach(sliderImage => {
+      //halfway through the image
+      const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+      //bottom of the image
+      const imageBottom = sliderImage.offsetTop + sliderImage.height;
+      const isHalfShown = slideInAt > sliderImage.offsetTop;
+      const isNotScrolledPast = window.scrollY < imageBottom;
+      if(isHalfShown && isNotScrolledPast) {
+        sliderImage.classList.add('active');
+      } else {
+        sliderImage.classList.remove('active');
+      }
+    });
+
+  }
+
+  window.addEventListener('scroll', debounce(checkSlide));
+  </script>
+
+  <style>
+    html {
+      box-sizing: border-box;
+      background: #62BBC1;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: 200;
+    }
+    
+    body {
+      margin: 0;
+    }
+    
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .site-wrap {
+      max-width: 700px;
+      margin: 100px auto;
+      background: white;
+      padding: 40px;
+      text-align: justify;
+    }
+
+    .align-left {
+      float: left;
+      margin-right: 20px;
+    }
+
+    .align-right {
+      float: right;
+      margin-left: 20px;
+    }
+
+    .slide-in {
+      opacity: 0;
+      transition: all .5s;
+    }
+
+    .align-left.slide-in {
+      transform: translateX(-30%) scale(0.95);
+    }
+    
+    .align-right.slide-in {
+      transform: translateX(30%) scale(0.95);
+    }
+
+    .slide-in.active {
+      opacity: 1;
+      transform: translateX(0%) scale(1);
+    }
+
+  </style>
+
+</body>
+</html>
